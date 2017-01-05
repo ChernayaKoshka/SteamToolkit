@@ -12,6 +12,7 @@ namespace SteamToolkit
         public readonly uint AccountId;
         public readonly ulong SteamIdUlong;
         public readonly string SteamIdText;
+        public readonly string SteamId3Text;
 
         /// <summary>
         /// Initializes a new SteamId as well as automatically performing the conversions to 'AccountId' 'SteamIdUlong' 'SteamIdText'
@@ -35,13 +36,25 @@ namespace SteamToolkit
             SteamIdText = IdConversions.UlongToSteamIdText(steamIdUlong);
         }
 
-        public SteamId(string steamIdText)
+        public SteamId(string steamIdText, bool id3 = false)
         {
-            AccountId = IdConversions.SteamIdTextToAccountId(steamIdText);
-            SteamIdUlong = IdConversions.SteamIdTextToUlong(steamIdText);
-            if (SteamIdUlong < 76561197960265728)
-                throw new ArgumentException("SteamIdUlong cannot be less than '76561197960265728'");
-            SteamIdText = steamIdText;
+            if (id3)
+            {
+                string[] exploded = steamIdText.Split(':');
+                if(exploded[0].ToUpper() != "U") throw new ArgumentException("Group ids not supported.");
+                AccountId = Convert.ToUInt32(exploded[2].Remove(exploded[2].Length-1));
+                SteamIdUlong = IdConversions.AccountIdToUlong(AccountId);
+                SteamIdText = IdConversions.AccountIdToSteamIdText(AccountId);
+                SteamId3Text = SteamIdText;
+            }
+            else
+            {
+                AccountId = IdConversions.SteamIdTextToAccountId(steamIdText);
+                SteamIdUlong = IdConversions.SteamIdTextToUlong(steamIdText);
+                if (SteamIdUlong < 76561197960265728)
+                    throw new ArgumentException("SteamIdUlong cannot be less than '76561197960265728'");
+                SteamIdText = steamIdText;
+            }
         }
     }
 
