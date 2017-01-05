@@ -336,7 +336,7 @@ namespace SteamToolkit.Community
                 {"steamid", steamId.ToString()}
             };
 
-            return Convert.ToBoolean(_web.Fetch(url, "POST", data, _account.AuthContainer));
+            return Convert.ToBoolean(_web.Fetch(url, "POST", data, _account.AuthContainer).ReadStream());
         }
 
         /// <summary>
