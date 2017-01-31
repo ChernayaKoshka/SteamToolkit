@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using BotDataScrapeTools;
+using HtmlAgilityPack;
 using SteamToolkit.Web;
 
 namespace SteamToolkit.Community
@@ -23,6 +25,14 @@ namespace SteamToolkit.Community
         public CommunityHandler(Account account)
         {
             _account = account;
+        }
+
+        public List<SteamId> GetFriendRequests()
+        {
+            HtmlDocument document = HapHelper.LoadDocumentFromUrl(_web,
+                "https://steamcommunity.com/profiles/" + _account.SteamId + "/home/invites/", _account.AuthContainer);
+            List<HtmlNode> nodes = HapHelper.FindAllNodesByAttribute(document.DocumentNode, "class", "invite_row");
+            return (from node in nodes select node.Attributes["id"].Value.Remove(0, 8) into id where id.StartsWith("U") select new SteamId(id, true)).ToList();
         }
 
         public GetTopicsHtmlResult GetTopicsHtml(ulong forumId, ulong start, ulong count)

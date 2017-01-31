@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Visual Studio Projects\SmoothOperator\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\Visual Studio Projects\SmoothOperator\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -90,6 +94,7 @@
     <Compile Include="Configuration\Data Classes\ConfigFrame.cs" />
     <Compile Include="Configuration\XmlConfigHandler.cs" />
     <Compile Include="ConsoleInputOutput.cs" />
+    <Compile Include="HAPHelper.cs" />
     <Compile Include="IUserInputOutputHandler.cs" />
     <Compile Include="Trading\Data Classes\MarketValue.cs" />
     <Compile Include="Trading\Data Classes\RgDescription.cs" />
