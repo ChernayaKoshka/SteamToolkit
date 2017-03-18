@@ -50,21 +50,19 @@ namespace SteamToolkit.Web
             return true;
         }
 
-
         private static byte[] HexToByte(string hex)
         {
-            if (hex.Length%2 == 1)
+            int hexLen = hex.Length;
+            if (hexLen % 2 == 1)
                 throw new Exception("The binary key cannot have an odd number of digits");
 
-            byte[] arr = new byte[hex.Length >> 1];
-            int l = hex.Length;
-
-            for (int i = 0; i < (l >> 1); ++i)
+            
+            byte[] ret = new byte[hexLen / 2];
+            for (int i = 0; i < hexLen; i += 2)
             {
-                arr[i] = (byte) ((GetHexVal(hex[i << 1]) << 4) + (GetHexVal(hex[(i << 1) + 1])));
+                ret[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
             }
-
-            return arr;
+            return ret;
         }
 
         private static int GetHexVal(char hex)
