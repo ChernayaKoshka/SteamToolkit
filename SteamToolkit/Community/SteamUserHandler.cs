@@ -9,7 +9,7 @@ namespace SteamToolkit.Community
     /// </summary>
     public class SteamUserHandler
     {
-        private const string BaseUrl = "http://api.steampowered.com/ISteamUser/";
+        private const string BaseUrl = "https://api.steampowered.com/ISteamUser/";
         private readonly string _apiKey;
 
         private readonly Web.Web _web = new Web.Web(new SteamWebRequestHandler());

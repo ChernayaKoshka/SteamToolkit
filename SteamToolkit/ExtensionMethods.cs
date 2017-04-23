@@ -27,7 +27,7 @@ namespace SteamToolkit
 
             try
             {
-                var xmlserializer = new XmlSerializer(typeof (T));
+                var xmlserializer = new XmlSerializer(typeof(T));
                 var stringWriter = new StringWriter();
 
                 var settings = new XmlWriterSettings
@@ -38,7 +38,7 @@ namespace SteamToolkit
                     NewLineHandling = NewLineHandling.Replace
                 };
 
-                using (var writer = XmlWriter.Create(stringWriter,settings))
+                using (var writer = XmlWriter.Create(stringWriter, settings))
                 {
                     xmlserializer.Serialize(writer, value);
                     return stringWriter.ToString();

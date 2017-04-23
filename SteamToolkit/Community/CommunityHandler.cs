@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
-using BotDataScrapeTools;
 using HtmlAgilityPack;
 using SteamToolkit.Web;
 
@@ -353,7 +352,7 @@ namespace SteamToolkit.Community
         /// Invites the specified user to a group.
         /// </summary>
         /// <param name="steamId">The SteamId64 of the person to invite.</param>
-        /// <param name="json">I forgot... oops.</param>
+        /// <param name="json">I forgot oops.</param>
         /// <param name="group">The SteamId64 of the group to invite to.</param>
         /// <param name="Account.AuthContainer">Auth Cookies MUST be passed here, the function will fail if not.</param>
         /// <returns>An InviteResponse object.</returns>
@@ -381,7 +380,7 @@ namespace SteamToolkit.Community
         /// Invites the specified users to a group.
         /// </summary>
         /// <param name="steamIds">The SteamId64s of the users to invite.</param>
-        /// <param name="json">I forgot... oops.</param>
+        /// <param name="json">I forgot oops.</param>
         /// <param name="group">The SteamId64 of the group to invite the users to.</param>
         /// <param name="Account.AuthContainer">Auth Cookies MUST be passed here, the function will fail if not.</param>
         /// <returns>A MultiInviteResponse object.</returns>
