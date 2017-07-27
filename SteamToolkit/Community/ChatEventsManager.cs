@@ -13,6 +13,8 @@ namespace SteamToolkit.Community
 
         public event OnMessageReceived MessageReceived;
 
+        public event OnSentChatMessage OnMessageSent;
+
         private bool _searching;
 
         private readonly SteamChatHandler _chatHandler;
@@ -65,6 +67,9 @@ namespace SteamToolkit.Community
                         case "typing":
                             OnUserTyping?.Invoke(this, new TypingArgs(message));
                             break;
+                        case "my_saytext":
+                            OnMessageSent?.Invoke(this, new ChatMessageArgs(message));
+                            break;
                     }
                 }
             }
@@ -105,6 +110,20 @@ namespace SteamToolkit.Community
     }
 
     public delegate void OnPoll(object sender, PollArgs e);
+    #endregion
+
+    #region OnSentMessage
+    public class SentChatMessageArgs : EventArgs
+    {
+        public SentChatMessageArgs(Message chatMessage)
+        {
+            ChatMessage = chatMessage;
+        }
+
+        public Message ChatMessage;
+    }
+
+    public delegate void OnSentChatMessage(object sender, ChatMessageArgs e);
     #endregion
 
     #region OnChatMessage
